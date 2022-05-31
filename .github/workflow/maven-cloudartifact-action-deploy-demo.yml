@@ -1,0 +1,22 @@
+name: Maven Cloudartifact Action Deploy Demo
+on:
+  push:
+    branches:
+       master
+jobs:
+  Publish-to-CloudArtifact:
+    runs-on: ubuntu-latest
+    steps:
+        # 代码检出
+      - uses: actions/checkout@v2
+
+        # 华为云CloudArtifact maven 私仓配置 
+      - name: Setup HuaweiCloud Maven CloudArtifact
+        uses: huaweicloud/Maven-cloudartifact-action@v1.0.0
+        with: 
+          servers: '[{"id": "release_dfbdbf2e511e40fa88ba1d653358d65c_1_0", "username": "${{ secrets.MAVEN_USERNAME }}", "password": "${{ secrets.MAVEN_PASSWORD }}"}]'
+    
+        # 推送maven二进制包到华为云CloudArtifact maven 私仓
+      - name: deploy artifact 
+        run: |
+          mvn deploy -e -X
