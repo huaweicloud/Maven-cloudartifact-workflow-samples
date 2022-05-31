@@ -2,6 +2,7 @@
  * Hello world
  *
  */
+package com.huawei.demo;
 
 public class HelloWorld {
 
