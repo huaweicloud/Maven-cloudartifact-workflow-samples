@@ -1,4 +1,4 @@
-name: Maven Cloudartifact Action Install Demo
+name: Maven Cloudartifact Action Package Demo
 on:
   push:
     branches:
@@ -17,7 +17,7 @@ jobs:
           servers: '[{"id": "release_xxx_1_0", "username": "${{ secrets.MAVEN_USERNAME }}", "password": "${{ secrets.MAVEN_PASSWORD }}"}]'
           repositories: '[{ "id": "central", "url": "https://repo1.maven.org/maven2", "releases": { "enabled": "true" }, "snapshots": { "enabled": "false" } },{ "id": "release_xxx_1_0", "url": "https://devrepo.devcloud.cn-north-4.huaweicloud.com/07/nexus/content/repositories/xxx_1_0/", "releases": { "enabled": "true" }, "snapshots": { "enabled": "false" } }]'
 
-        # 拉取华为云CloudArtifact maven 私仓二进制包
-      - name: install artifact
+        # 拉取华为云CloudArtifact maven 私仓二进制包构建工程
+      - name: package artifact
         run: |
-          mvn install -e -X
+          mvn package -e -X

@@ -39,4 +39,12 @@
       </plugins>
     </pluginManagement>
   </build>
+
+  <distributionManagement>
+      <repository>
+            <id>release_xxx_1_0</id>
+            <name>CloudArtifact Apache Maven Packages</name>
+            <url>https://devrepo.devcloud.cn-north-4.huaweicloud.com/07/nexus/content/repositories/xxx_1_0/</url>
+      </repository>
+  </distributionManagement>
 </project>
