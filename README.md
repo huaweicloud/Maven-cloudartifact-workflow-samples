@@ -85,7 +85,7 @@ jobs:
 (1)代码检出 
 > [**mvn package 注意点**]  
 > 1.首先确保需要下载的组件在CloudArtifact maven 私仓  
-> 2.将需要下载的组件添加进pom文件  
+> 2.将需要下载的组件添加进pom文件，如下面的依赖  
 > `<dependency>`  
 >    `<groupId>com.huawei.devcloud</groupId>`  
 >    `<artifactId>demoapp</artifactId>`  
@@ -94,7 +94,8 @@ jobs:
 > 3.下载组件的maven坐标(groupId:artifactId:version)与当前工程的坐标不能一样。
 
 (2)华为云CloudArtifact maven 私仓配置  
-> settings.xml中repositories中需要账号信息的仓库id需与settings.xml中server节点下的仓库id与，也就是action输入参数servers与repositories的id一致。可以参考当前仓库的文件./github/workflow/maven-cloudartifact-action-install-demo.yml
+> settings.xml中repositories中需要账号信息的仓库id需与settings.xml中server节点下的仓库id一致。也就是action输入参数servers与repositories的id一致。可以参考当前仓库的文件./github/workflow/maven-cloudartifact-action-install-demo.yml
+> > ![img](imgs/server-repository-id.PNG)
 
 (3)maven package 拉取华为云CloudArtifact maven 私仓二进制包构建工程
 ```yaml
@@ -104,7 +105,7 @@ on:
     branches:
        master
 jobs:
-  Publish-to-CloudArtifact:
+  Install-CloudArtifact:
     runs-on: ubuntu-latest
     steps:
         # 代码检出

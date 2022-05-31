@@ -4,7 +4,7 @@ on:
     branches:
        master
 jobs:
-  Publish-to-CloudArtifact:
+  Install-CloudArtifact:
     runs-on: ubuntu-latest
     steps:
         # 代码检出
