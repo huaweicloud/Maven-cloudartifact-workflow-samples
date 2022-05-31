@@ -22,4 +22,4 @@ scripts:
 #  构建产物
 artifacts:
   image:
-- registry-cbu.huawei.com/dtse-hdn/Maven-cloudartifact-workflow-samples:${CID_SHORT_UID}
+   - registry-cbu.huawei.com/dtse-hdn/Maven-cloudartifact-workflow-samples:${CID_SHORT_UID}
