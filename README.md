@@ -45,14 +45,8 @@ steps:
 ## **CloudArtifact Maven 私仓Workflow样例**
 ### 1.mvn deploy 推送maven组件到 CloudArtifact Maven 私仓 
 步骤说明：  
-(1)代码检出 
-> mvn deploy， pom文件里面必须包含有效的`<distributionManagement/>`元素,可以参考当前仓库pom.xml文件   
-> Reference: [Maven Deploy](https://maven.apache.org/plugins/maven-deploy-plugin/usage.html)
-
-(2)华为云CloudArtifact maven 私仓配置  
-> `<distributionManagement/>`元素pom.xml中配置的仓库的id和settings.xml中server节点下的仓库id一致，也就是action输入参数servers的id一致。可以参考当前仓库pom.xml文件和maven-cloudartifact-action-deploy-demo.yml    
-> ![img](imgs/distribution-server-repository-id.PNG)  
-
+(1)代码检出  
+(2)华为云CloudArtifact maven 私仓配置    
 (3)maven deploy 推送maven二进制包到华为云CloudArtifact maven 私仓
 ```yaml
 name: Maven Cloudartifact Action Deploy Demo
@@ -79,24 +73,16 @@ jobs:
           mvn deploy -e -X
 ```
 详情可参考 ./github/workflow/maven-cloudartifact-action-deploy-demo.yml
+> 【**注意**】  
+> 1.mvn deploy， pom文件里面必须包含有效的`<distributionManagement/>`元素,可以参考当前仓库pom.xml文件   
+> Reference: [Maven Deploy](https://maven.apache.org/plugins/maven-deploy-plugin/usage.html)  
+> 2.`<distributionManagement/>`元素pom.xml中配置的仓库的id和settings.xml中server节点下的仓库id一致，也就是action输入参数servers的id一致。可以参考当前仓库pom.xml文件和maven-cloudartifact-action-deploy-demo.yml    
+> ![img](imgs/distribution-server-repository-id.PNG) 
 
 ### 2.mvn package 拉取CloudArtifact Maven 私仓的maven组件 
 步骤说明：  
-(1)代码检出 
-> [**mvn package 注意点**]  
-> 1.首先确保需要下载的组件在CloudArtifact maven 私仓  
-> 2.将需要下载的组件添加进pom文件，如下面的依赖  
-> `<dependency>`  
->    `<groupId>com.huawei.devcloud</groupId>`  
->    `<artifactId>demoapp</artifactId>`  
->    `<version>1.0.0</version>`  
-> `</dependency>`  
-> 3.下载组件的maven坐标(groupId:artifactId:version)与当前工程的坐标不能一样。
-
+(1)代码检出  
 (2)华为云CloudArtifact maven 私仓配置  
-> settings.xml中repositories中需要账号信息的仓库id需与settings.xml中server节点下的仓库id一致。也就是action输入参数servers与repositories的id一致。可以参考当前仓库的文件./github/workflow/maven-cloudartifact-action-install-demo.yml
-> > ![img](imgs/server-repository-id.PNG)
-
 (3)maven package 拉取华为云CloudArtifact maven 私仓二进制包构建工程
 ```yaml
 name: Maven Cloudartifact Action Package Demo
@@ -124,3 +110,14 @@ jobs:
           mvn package -e -X
 ```
 详情可参考 ./github/workflow/maven-cloudartifact-action-install-demo.yml
+> 【**注意点**】  
+> 1.首先确保需要下载的组件在CloudArtifact maven 私仓  
+> 2.将需要下载的组件添加进pom文件，如下面的依赖  
+> `<dependency>`  
+>    `<groupId>com.huawei.devcloud</groupId>`  
+>    `<artifactId>demoapp</artifactId>`  
+>    `<version>1.0.0</version>`  
+> `</dependency>`  
+> 3.下载组件的maven坐标(groupId:artifactId:version)与当前工程的坐标不能一样。  
+> 4.settings.xml中repositories中需要账号信息的仓库id需与settings.xml中server节点下的仓库id一致。也就是action输入参数servers与repositories的id一致。可以参考当前仓库的文件./github/workflow/maven-cloudartifact-action-install-demo.yml
+> ![img](imgs/server-repository-id.PNG)
