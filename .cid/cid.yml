@@ -1,0 +1,18 @@
+version: '1.0'
+name: Maven-cloudartifact-workflow-samples
+language: java
+dependencies:
+  base:
+    jdk: best
+    maven: best
+artifacts:
+  package:
+    - >-
+      Maven-cloudartifact-workflow-samples-${CID_BUILD_NUMBER}.*.tar.gz
+machine:
+ standard:
+    euler:
+      - default
+scripts:
+  - mvn package -Dmaven.test.skip=true
+  - tar -zcvf  Maven-cloudartifact-workflow-samples-${CID_BUILD_NUMBER}.tar.gz  target/

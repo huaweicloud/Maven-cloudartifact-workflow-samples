@@ -1,0 +1,28 @@
+name: Maven Cloudartifact Action Deploy Demo
+on:
+  push:
+    branches:
+       master
+jobs:
+  Publish-to-CloudArtifact:
+    runs-on: ubuntu-latest
+    steps:
+        # 代码检出
+      - uses: actions/checkout@v2
+
+        # GitHub Action环境默认java版本为11，可以根据自己项目需求修改java版本
+      - name: Set up JDK 11 for maven build
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+        # 华为云CloudArtifact maven 私仓配置 
+      - name: Setup HuaweiCloud Maven CloudArtifact
+        uses: huaweicloud/Maven-cloudartifact-action@v1.0.0
+        with: 
+          servers: '[{"id": "release_repo_id", "username": "${{ secrets.MAVEN_USERNAME }}", "password": "${{ secrets.MAVEN_PASSWORD }}"}]'
+    
+        # 推送maven二进制包到华为云CloudArtifact maven 私仓
+      - name: deploy artifact 
+        run: |
+          mvn deploy -e -X
