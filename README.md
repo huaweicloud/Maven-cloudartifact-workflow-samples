@@ -1,4 +1,6 @@
 # 使用华为云CloudArtifact Maven 私仓Workflow样例
+**本READEME指导是基于[Maven CloudArtifact Action](https://github.com/marketplace/actions/huaweicloud-maven-cloudartifact)使用华为云CloudArtifact Maven 私仓Workflow样例**   
+  
 私有依赖库(CloudArtifact)是发布服务（[CloudRelease](https://support.huaweicloud.com/cloudrelease/index.html)）的语言软件仓库功能。用于管理私有组件（开发者通俗称之为私服），包括Maven、Npm、Go、PyPI、Rpm等多种仓库格式。   
 使用华为云CloudArtifact Maven 私仓有如下场景：  
 1.mvn deploy 推送maven组件到 CloudArtifact Maven 私仓   
