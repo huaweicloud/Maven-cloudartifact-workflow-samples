@@ -44,7 +44,7 @@
       <repository>
             <id>release_repo_id</id>
             <name>CloudArtifact Apache Maven Packages</name>
-            <url>https://devrepo.devcloud.cn-north-4.huaweicloud.com/07/nexus/content/repositories/{{repp_name}}/</url>
+            <url>https://devrepo.devcloud.cn-north-4.huaweicloud.com/07/nexus/content/repositories/{{repo_name}}/</url>
       </repository>
   </distributionManagement>
 </project>
