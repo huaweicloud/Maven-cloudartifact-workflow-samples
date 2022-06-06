@@ -6,13 +6,17 @@
 
 ## 前置工作
 (1) [新建私有依赖库](https://support.huaweicloud.com/usermanual-releaseman/cloudrelease_01_0008.html)  
-(2) [管理用户权限](https://support.huaweicloud.com/usermanual-releaseman/cloudrelease_01_0011.html)  
+(2) [仓库权限](https://support.huaweicloud.com/usermanual-releaseman/cloudrelease_01_0011.html)  
+上传maven组件需要权限: 仓库角色为仓库管理员、开发者  
+下载maven组件需要权限: 仓库角色为仓库管理员、开发者、浏览者  
+> 不是仓库成员或者没有对应权限需要租户帐号、仓库管理员修改为对应的仓库角色。
+
 (3) CloudArtifact Maven 私仓账号信息获取  
 [私有依赖库首页](https://devcloud.cn-north-4.huaweicloud.com/cloudartifact/repository)->点击需要的Maven仓库->右上角操作指导->点击下载配置文件->Maven配置在下载的settings.xml文件当中  
 ![图一](imgs/maven-setting-download.PNG)
 
 ## 参数说明
-Maven-cloudartifact-action 参数都属于Maven settings.xml文件的元素，详细了解可以到官网[Maven Settings ](http://maven.apache.org/settings.html)。本action四个参数servers, mirrors,repositories,pluginRepositories都是json array的格式。下面给出四个参数的具体的样例。
+Maven-cloudartifact-action 参数都属于Maven settings.xml文件的元素，详细了解可以到官网[Maven Settings ](http://maven.apache.org/settings.html)。本action四个参数servers, mirrors,repositories,pluginRepositories都是json array的格式。下面给出四个参数的具体的样例。用户可以根据自己实际的仓库信息替换id,url等里面的参数值。  
 ### `servers`  
 ```yml
 steps:
@@ -43,7 +47,7 @@ steps:
 ```
 
 ## **CloudArtifact Maven 私仓Workflow样例**
-### 1.mvn deploy 推送maven组件到 CloudArtifact Maven 私仓 
+### 1.mvn deploy: 推送maven组件到 CloudArtifact Maven 私仓 
 步骤说明：  
 (1)代码检出  
 (2)华为云CloudArtifact maven 私仓配置    
@@ -82,10 +86,10 @@ jobs:
 > 【**注意**】  
 > 1.mvn deploy， pom文件里面必须包含有效的`<distributionManagement/>`元素,可以参考当前仓库pom.xml文件   
 > Reference: [Maven Deploy](https://maven.apache.org/plugins/maven-deploy-plugin/usage.html)  
-> 2.`<distributionManagement/>`元素pom.xml中配置的仓库的id和settings.xml中server节点下的仓库id一致，也就是action输入参数servers的id一致。可以参考当前仓库pom.xml文件和maven-cloudartifact-action-deploy-demo.yml    
+> 2.action的参数servers中，id需要与pom文件中`<distributionManagement/>`元素的仓库id一致。可以参考当前仓库pom.xml文件和maven-cloudartifact-action-deploy-demo.yml    
 > ![img](imgs/distribution-server-repository-id.PNG) 
 
-### 2.mvn package 拉取CloudArtifact Maven 私仓的maven组件 
+### 2.mvn package: 拉取CloudArtifact Maven 私仓的maven组件 
 步骤说明：  
 (1)代码检出  
 (2)华为云CloudArtifact maven 私仓配置  
