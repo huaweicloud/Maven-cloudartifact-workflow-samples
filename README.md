@@ -1,5 +1,5 @@
-# 使用华为云CloudArtifact Maven 私仓Workflow样例
-**本READEME指导是基于[Maven CloudArtifact Action](https://github.com/marketplace/actions/huaweicloud-maven-cloudartifact)使用华为云CloudArtifact Maven 私仓Workflow样例**   
+# 使用华为云CloudArtifact Maven 私仓workflows样例
+**本READEME指导是基于[Maven CloudArtifact Action](https://github.com/marketplace/actions/huaweicloud-maven-cloudartifact)使用华为云CloudArtifact Maven 私仓workflows样例**   
   
 私有依赖库(CloudArtifact)是发布服务（[CloudRelease](https://support.huaweicloud.com/cloudrelease/index.html)）的语言软件仓库功能。用于管理私有组件（开发者通俗称之为私服），包括Maven、Npm、Go、PyPI、Rpm等多种仓库格式。   
 使用华为云CloudArtifact Maven 私仓有如下场景：  
@@ -48,7 +48,7 @@ steps:
     plugin_repositories: '[{ "id": "some-plugin-repository", "url": "http://some.plugin.repository.url", "releases": { "enabled": "true" }, "snapshots": { "enabled": "false" }}]'
 ```
 
-## **CloudArtifact Maven 私仓Workflow样例**
+## **CloudArtifact Maven 私仓workflows样例**
 ### 1.mvn deploy: 推送maven组件到 CloudArtifact Maven 私仓 
 步骤说明：  
 (1)代码检出  
@@ -84,7 +84,7 @@ jobs:
         run: |
           mvn deploy -e -X
 ```
-详情可参考 ./github/workflow/maven-cloudartifact-action-deploy-demo.yml
+详情可参考 ./github/workflows/maven-cloudartifact-action-deploy-demo.yml
 > 【**注意**】  
 > 1.mvn deploy， pom文件里面必须包含有效的`<distributionManagement/>`元素,可以参考当前仓库pom.xml文件   
 > Reference: [Maven Deploy](https://maven.apache.org/plugins/maven-deploy-plugin/usage.html)  
@@ -127,7 +127,7 @@ jobs:
         run: |
           mvn package -e -X
 ```
-详情可参考 ./github/workflow/maven-cloudartifact-action-install-demo.yml
+详情可参考 ./github/workflows/maven-cloudartifact-action-package-demo.yml
 > 【**注意点**】  
 > 1.首先确保需要下载的组件在CloudArtifact maven 私仓  
 > 2.将需要下载的组件添加进pom文件，如下面的依赖  
@@ -137,5 +137,5 @@ jobs:
 >    `<version>1.0.0</version>`  
 > `</dependency>`  
 > 3.下载组件的maven坐标(groupId:artifactId:version)与当前工程的坐标不能一样。  
-> 4.settings.xml中repositories中需要账号信息的仓库id需与settings.xml中server节点下的仓库id一致。也就是action输入参数servers与repositories的id一致。可以参考当前仓库的文件./github/workflow/maven-cloudartifact-action-install-demo.yml
+> 4.settings.xml中repositories中需要账号信息的仓库id需与settings.xml中server节点下的仓库id一致。也就是action输入参数servers与repositories的id一致。可以参考当前仓库的文件./github/workflows/maven-cloudartifact-action-package-demo.yml
 > ![img](imgs/server-repository-id.PNG)
