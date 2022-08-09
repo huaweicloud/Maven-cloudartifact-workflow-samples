@@ -38,14 +38,14 @@ steps:
 steps:
 - uses: huaweicloud/Maven-cloudartifact-action@v1.0.0
   with:
-    repositories: '[{ "id": "some-repository", "url": "http://some.repository.url", "releases": { "enabled": "true" }, "snapshots": { "enabled": "false" } }]'
+    repositories: '[{ "id": "some-repository", "url": "http://<private_repo_url>", "releases": { "enabled": "true" }, "snapshots": { "enabled": "false" } }]'
 ```
 ### `pluginRepositories`  
 ```yml
 steps:
 - uses: huaweicloud/Maven-cloudartifact-action@v1.0.0
   with:
-    plugin_repositories: '[{ "id": "some-plugin-repository", "url": "http://some.plugin.repository.url", "releases": { "enabled": "true" }, "snapshots": { "enabled": "false" }}]'
+    plugin_repositories: '[{ "id": "some-plugin-repository", "url": "http://<private_repo_url>", "releases": { "enabled": "true" }, "snapshots": { "enabled": "false" }}]'
 ```
 
 ## **CloudArtifact Maven 私仓workflows样例**
@@ -120,7 +120,7 @@ jobs:
         uses: huaweicloud/Maven-cloudartifact-action@v1.0.0
         with: 
           servers: '[{"id": "release_repo_id", "username": "${{ secrets.MAVEN_USERNAME }}", "password": "${{ secrets.MAVEN_PASSWORD }}"}]'
-          repositories: '[{ "id": "central", "url": "https://repo1.maven.org/maven2", "releases": { "enabled": "true" }, "snapshots": { "enabled": "false" } },{ "id": "release_repo_id", "url": "https://devrepo.devcloud.cn-north-4.huaweicloud.com/07/nexus/content/repositories/{{repo_name}}/", "releases": { "enabled": "true" }, "snapshots": { "enabled": "false" } }]'
+          repositories: '[{ "id": "central", "url": "https://repo1.maven.org/maven2", "releases": { "enabled": "true" }, "snapshots": { "enabled": "false" } },{ "id": "release_repo_id", "url": "https://<release_private_repo_url>/", "releases": { "enabled": "true" }, "snapshots": { "enabled": "false" } }]'
 
         # 拉取华为云CloudArtifact maven 私仓二进制包构建工程
       - name: package artifact
@@ -139,3 +139,8 @@ jobs:
 > 3.下载组件的maven坐标(groupId:artifactId:version)与当前工程的坐标不能一样。  
 > 4.settings.xml中repositories中需要账号信息的仓库id需与settings.xml中server节点下的仓库id一致。也就是action输入参数servers与repositories的id一致。可以参考当前仓库的文件./github/workflows/maven-cloudartifact-action-package-demo.yml
 > ![img](imgs/server-repository-id.PNG)
+
+## 公网域名说明
+```
+Maven官方中心仓：'https://repo1.maven.org/maven2'
+```
