@@ -17,8 +17,8 @@ jobs:
           java-version: 8
 
         # 华为云CloudArtifact maven 私仓配置 
-      - name: Setup HuaweiCloud Maven CloudArtifact
-        uses: huaweicloud/Maven-cloudartifact-action@v1.0.0
+      - name: Setup Huawei Cloud Maven CloudArtifact
+        uses: huaweicloud/Maven-cloudartifact-action@v1.1.0
         with: 
           servers: '[{"id": "release_repo_id", "username": "${{ secrets.MAVEN_USERNAME }}", "password": "${{ secrets.MAVEN_PASSWORD }}"}]'
     
