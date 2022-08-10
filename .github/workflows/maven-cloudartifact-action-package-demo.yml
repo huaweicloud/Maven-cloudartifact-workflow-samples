@@ -21,7 +21,7 @@ jobs:
         uses: huaweicloud/Maven-cloudartifact-action@v1.1.0
         with: 
           servers: '[{"id": "release_repo_id", "username": "${{ secrets.MAVEN_USERNAME }}", "password": "${{ secrets.MAVEN_PASSWORD }}"}]'
-          repositories: '[{ "id": "central", "url": "https://repo1.maven.org/maven2", "releases": { "enabled": "true" }, "snapshots": { "enabled": "false" } },{ "id": "release_repo_id", "url": "https:///<release_private_repo_url>", "releases": { "enabled": "true" }, "snapshots": { "enabled": "false" } }]'
+          repositories: '[{ "id": "central", "url": "https://repo1.maven.org/maven2", "releases": { "enabled": "true" }, "snapshots": { "enabled": "false" } },{ "id": "release_repo_id", "url": "https://<release_private_repo_url>", "releases": { "enabled": "true" }, "snapshots": { "enabled": "false" } }]'
 
         # 拉取华为云CloudArtifact maven 私仓二进制包构建工程
       - name: package artifact
