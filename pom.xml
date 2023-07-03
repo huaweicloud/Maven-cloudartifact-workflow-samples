@@ -42,7 +42,7 @@
   <distributionManagement>
       <repository>
             <id>release_repo_id</id>
-            <name>CloudArtifact Apache Maven Packages</name>
+            <name>CodeArts Artifact Apache Maven Packages</name>
             <url>修改为自己的仓库地址</url>
       </repository>
   </distributionManagement>

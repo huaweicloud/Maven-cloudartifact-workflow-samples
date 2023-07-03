@@ -1,10 +1,10 @@
-name: Maven Cloudartifact Action Deploy Demo
+name: Maven CodeArts Artifact Action Deploy Demo
 on:
   push:
     branches:
        master
 jobs:
-  Publish-to-CloudArtifact:
+  Publish-to-CodeArts-Artifact:
     runs-on: ubuntu-latest
     steps:
         # 代码检出
@@ -16,13 +16,13 @@ jobs:
         with:
           java-version: 8
 
-        # 华为云CloudArtifact maven 私仓配置 
-      - name: Setup Huawei Cloud Maven CloudArtifact
-        uses: huaweicloud/Maven-cloudartifact-action@v1.1.0
+        # 华为云CodeArts Artifact maven 私仓配置 
+      - name: Setup Huawei Cloud CodeArts Maven Artifact
+        uses: huaweicloud/Maven-cloudartifact-action@v1.0.0
         with: 
           servers: '[{"id": "release_repo_id", "username": "${{ secrets.MAVEN_USERNAME }}", "password": "${{ secrets.MAVEN_PASSWORD }}"}]'
     
-        # 推送maven二进制包到华为云CloudArtifact maven 私仓
+        # 推送maven二进制包到华为云CodeArts Artifact maven 私仓
       - name: deploy artifact 
         run: |
           mvn deploy -e -X
